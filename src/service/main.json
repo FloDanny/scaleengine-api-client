@@ -1,0 +1,129 @@
+{
+  "name": "ScaleEngine",
+  "baseUrl": "https://api.scaleengine.net/stable/",
+  "description": "The ScaleEngine API.",
+  "operations": {
+    "BaseRequest": {
+      "summary": "The base operation configuration for defining default parameters required.",
+      "httpMethod": "POST",
+      "additionalParameters": false,
+      "parameters": {
+        "apiKey": {
+          "location": "scaleengineParameter",
+          "required": true,
+          "type": "string",
+          "description": "The secret API key used to authenticate with your ScaleEngine account.",
+          "sentAs": "api_key"
+        },
+        "cdn": {
+          "location": "scaleengineParameter",
+          "required": true,
+          "type": "integer",
+          "description": "The CDN id of your ScaleEngine account."
+        },
+        "command": {
+          "location": "scaleengineParameter",
+          "required": true,
+          "type": "string",
+          "description": "The API command to execute against ScaleEngine (should be automatically set by the command)."
+        },
+        "timestamp": {
+          "location": "scaleengineParameter",
+          "type": "integer",
+          "format": "timestamp",
+          "description": "The UNIX timestamp of your request, used to prevent authenticated API requests from being replayed. Defaults to the current time."
+        }
+      }
+    },
+    "GetTicketStatus": {
+      "extends": "BaseRequest",
+      "summary": "This API finds the status of a SEVU Ticket. This system allows you to lookup the status of any SEVU Ticket created by your account using the SEVU Ticket key that was returned by calling sevu.request. The ticket will show the criteria it was created with as well as information on last used date, # of uses remaining, and active status.",
+      "documentationUrl": "https://cp.scaleengine.net/docs/api/sevu/status",
+      "responseClass": "FloSports\\ScaleEngine\\Response\\GetTicketStatusResponse",
+      "responseNotes": "The ticket, if found, is included in the response.",
+      "parameters": {
+        "command": {
+          "location": "scaleengineParameter",
+          "default": "sevu.status",
+          "static": true
+        },
+        "key": {
+          "location": "scaleengineParameter",
+          "required": true,
+          "type": "string",
+          "description": "The SEVU ticket. This is the string that combined with the password provided when the ticket was created allows a user access to a protected stream."
+        }
+      }
+    },
+    "RequestTicket": {
+      "extends": "BaseRequest",
+      "summary": "This API creates a SEVU ticket. This ticket allows a user to view a protected video. This system allows you to restrict access to a specific video or subset of videos, to a specific IP address, timeframe and usage count.",
+      "documentationUrl": "https://cp.scaleengine.net/docs/api/sevu/request",
+      "responseClass": "FloSports\\ScaleEngine\\Response\\RequestTicketResponse",
+      "responseNotes": "The ticket created, if successful, is included in the response.",
+      "parameters": {
+        "app": {
+          "location": "scaleengineParameter",
+          "required": true,
+          "type": "string",
+          "description": "The ScaleEngine Application name to restrict viewing to. A pipe-separated list of applications, optionally with wildcards."
+        },
+        "command": {
+          "location": "scaleengineParameter",
+          "default": "sevu.request",
+          "static": true
+        },
+        "expires": {
+          "location": "scaleengineParameter",
+          "required": true,
+          "type": "string",
+          "description": "The expiration date of the ticket in YYYY-MM-DD hh:mm:ss (Y-m-d H:i:s) format. After this time, access will no longer be allowed, the user will require a new ticket."
+        },
+        "ip": {
+          "location": "scaleengineParameter",
+          "required": true,
+          "type": "string",
+          "description": "The IP address or CIDR mask to allow access from. May also be auto or auto/24. This will update the ticket the first time it is used to restrict it to the IP address of the user. This will prevent account sharing, while at the same time dealing with edge cases such as users behind corporate firewalls or proxies that may have a different IP address on the website than they will use to access the video stream."
+        },
+        "pass": {
+          "location": "scaleengineParameter",
+          "required": true,
+          "type": "string",
+          "description": "A randomly generated password. Should be unique for each request. Recommended length at least 10 characters."
+        },
+        "uses": {
+          "location": "scaleengineParameter",
+          "required": true,
+          "type": "integer",
+          "description": "The number of times the video will be allowed to start. This can be used to restrict how many times a ticket may be used, and helps further protect against account sharing."
+        },
+        "video": {
+          "location": "scaleengineParameter",
+          "required": true,
+          "type": "string",
+          "description": "The stream name or path of the VOD video the user is restricted to. A pipe-separated list of streams/VODs, optionally with wildcards. This allows for things like multi-bitrate streams or files, or allowing users access to a group of streams and videos."
+        }
+      }
+    },
+    "RevokeTicket": {
+      "extends": "BaseRequest",
+      "summary": "This API revokes a SEVU ticket. Once revoked the ticket can no longer be used, and a new ticket will be required for the user to continue viewing protected videos.",
+      "documentationUrl": "https://cp.scaleengine.net/docs/api/sevu/revoke",
+      "responseClass": "FloSports\\ScaleEngine\\Response\\RevokeTicketResponse",
+      "responseNotes": "The response will only indicate success/failure and does not include any data.",
+      "parameters": {
+        "command": {
+          "location": "scaleengineParameter",
+          "default": "sevu.revoke",
+          "static": true
+        },
+        "key": {
+          "location": "scaleengineParameter",
+          "required": true,
+          "type": "string",
+          "description": "The SEVU ticket. This is the string that combined with the password provided when the ticket was created allows a user access to a protected stream."
+        }
+      }
+    }
+  }
+}
