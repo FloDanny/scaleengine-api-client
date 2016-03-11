@@ -14,11 +14,11 @@ This library requires PHP 5.6, or newer.
 
 ## Installation
 This package uses [composer](https://getcomposer.org) so you can just add
-`flocasts/scaleengine-api-client` as a dependency to your `composer.json` file
-or execute the following command:
+`flosports/scaleengine-api-client` as a dependency to your `composer.json`
+file or execute the following command:
 
 ```bash
-composer require flocasts/scaleengine-api-client
+composer require flosports/scaleengine-api-client
 ```
 
 ## Usage
