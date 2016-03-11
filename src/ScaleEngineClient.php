@@ -15,6 +15,15 @@ use Guzzle\Service\Description\ServiceDescription;
  */
 class ScaleEngineClient extends GuzzleService
 {
+    /** @type string The expected date format ScaleEngine uses. **/
+    const SCALEENGINE_DATE_FORMAT = 'Y-m-d H:i:s';
+
+    /** @type string The full date string ScaleEngine uses for a null date. **/
+    const SCALEENGINE_NULL_DATE = '0000-00-00 00:00:00';
+
+    /** @type string The timezone ScaleEngine uses for its dates. **/
+    const SCALEENGINE_TIMEZONE = 'UTC';
+
     /**
      * Construct a service client for ScaleEngine's API.
      *
