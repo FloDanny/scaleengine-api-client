@@ -3,6 +3,7 @@ namespace FloSports\ScaleEngine\Model\Factory;
 
 use DateTime;
 use DateTimeZone;
+use FloSports\ScaleEngine\ScaleEngineClient;
 use Guzzle\Service\Resource\Model;
 
 /**
@@ -10,15 +11,6 @@ use Guzzle\Service\Resource\Model;
  */
 abstract class AbstractScaleEngineModelFactory
 {
-    /** @type string The expected date format ScaleEngine uses. **/
-    const SCALEENGINE_DATE_FORMAT = 'Y-m-d H:i:s';
-
-    /** @type string The full date string ScaleEngine uses for a null date. **/
-    const SCALEENGINE_NULL_DATE = '0000-00-00 00:00:00';
-
-    /** @type string The timezone ScaleEngine uses for its dates. **/
-    const SCALEENGINE_TIMEZONE = 'UTC';
-
     /** @type string The model class name. **/
     private $_model;
 
@@ -75,14 +67,14 @@ abstract class AbstractScaleEngineModelFactory
      */
     public function convertDate($date)
     {
-        if ($date === static::SCALEENGINE_NULL_DATE) {
+        if ($date === ScaleEngineClient::SCALEENGINE_NULL_DATE) {
             return null;
         }
 
         $dateTime = DateTime::createFromFormat(
-            static::SCALEENGINE_DATE_FORMAT,
+            ScaleEngineClient::SCALEENGINE_DATE_FORMAT,
             $date,
-            new DateTimeZone(static::SCALEENGINE_TIMEZONE)
+            new DateTimeZone(ScaleEngineClient::SCALEENGINE_TIMEZONE)
         );
 
         return $dateTime ?: null;

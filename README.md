@@ -5,20 +5,20 @@ A [ScaleEngine API][scaleengine-api] Client.
 [![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/flocasts/scaleengine-api-client.svg?style=flat)](https://scrutinizer-ci.com/g/flocasts/scaleengine-api-client/)
 [![Code Coverage](http://img.shields.io/coveralls/flocasts/scaleengine-api-client.svg?style=flat)](https://coveralls.io/r/flocasts/scaleengine-api-client)
 
-[![Latest Stable Version](http://img.shields.io/packagist/v/flocasts/scaleengine-api-client.svg?style=flat)](https://packagist.org/packages/flocasts/scaleengine-api-client)
-[![Total Downloads](http://img.shields.io/packagist/dt/flocasts/scaleengine-api-client.svg?style=flat)](https://packagist.org/packages/flocasts/scaleengine-api-client)
-[![License](http://img.shields.io/packagist/l/flocasts/scaleengine-api-client.svg?style=flat)](https://packagist.org/packages/flocasts/scaleengine-api-client)
+[![Latest Stable Version](http://img.shields.io/packagist/v/flosports/scaleengine-api-client.svg?style=flat)](https://packagist.org/packages/flosports/scaleengine-api-client)
+[![Total Downloads](http://img.shields.io/packagist/dt/flosports/scaleengine-api-client.svg?style=flat)](https://packagist.org/packages/flosports/scaleengine-api-client)
+[![License](http://img.shields.io/packagist/l/flosports/scaleengine-api-client.svg?style=flat)](https://packagist.org/packages/flosports/scaleengine-api-client)
 
 ## Requirements
 This library requires PHP 5.6, or newer.
 
 ## Installation
 This package uses [composer](https://getcomposer.org) so you can just add
-`flocasts/scaleengine-api-client` as a dependency to your `composer.json` file
-or execute the following command:
+`flosports/scaleengine-api-client` as a dependency to your `composer.json`
+file or execute the following command:
 
 ```bash
-composer require flocasts/scaleengine-api-client
+composer require flosports/scaleengine-api-client
 ```
 
 ## Usage
